@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#"
+     xml:base="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ewaste="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#">
+    
+    <owl:Ontology rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste">
+        <rdfs:label>ReUseIQ Electronic Waste Domain Ontology</rdfs:label>
+        <rdfs:comment>An ontology for intelligent electronic waste assessment, reuse, component recovery, and safe recycling.</rdfs:comment>
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice">
+        <rdfs:label>Electronic Device</rdfs:label>
+    </owl:Class>
+
+    <!-- Computing Devices -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ComputingDevice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Laptop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ComputingDevice"/>
+        <rdfs:label>Laptop</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#DesktopComputer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ComputingDevice"/>
+        <rdfs:label>Desktop Computer</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Tablet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ComputingDevice"/>
+        <rdfs:label>Tablet</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#MobilePhone">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:label>Mobile Phone</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Printer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:label>Printer</rdfs:label>
+    </owl:Class>
+
+    <!-- Components -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component">
+        <rdfs:label>Component</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Battery">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>Battery</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Storage">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>Storage Unit</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RAM">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>RAM Module</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Motherboard">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>Motherboard</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Display">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>Display Panel</rdfs:label>
+    </owl:Class>
+
+    <!-- Actions and Options -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction">
+        <rdfs:label>Advisory Action</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RepairOption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>Repair Option</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RefurbishOption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>Refurbishment Option</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ComponentRecoveryOption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>Component Recovery Option</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#DirectReuseOption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>Direct Reuse Option</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RecyclingProcess">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>Recycling Process</rdfs:label>
+    </owl:Class>
+
+    <!-- Facilities -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RecyclingFacility">
+        <rdfs:label>Recycling Facility</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#HazardousWasteFacility">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RecyclingFacility"/>
+        <rdfs:label>Hazardous Waste Facility</rdfs:label>
+    </owl:Class>
+
+    <!-- Safety Hazards -->
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#SafetyHazard">
+        <rdfs:label>Safety Hazard</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#SwollenBatteryHazard">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#SafetyHazard"/>
+        <rdfs:label>Swollen Lithium Battery Hazard</rdfs:label>
+    </owl:Class>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#hasComponent">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:label>has component</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#hasSafetyHazard">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#SafetyHazard"/>
+        <rdfs:label>has safety hazard</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#isProcessedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RecyclingProcess"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RecyclingFacility"/>
+        <rdfs:label>is processed by</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#recommendedAction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#AdvisoryAction"/>
+        <rdfs:label>recommended action</rdfs:label>
+    </owl:ObjectProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#hasDamageSeverity">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#hasRepairCost">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#hasReplacementCost">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#requiresDataErasure">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#ElectronicDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#isWorking">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals (Sample Instances)
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RAM_LAP104">
+        <rdf:type rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RAM"/>
+        <isWorking rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isWorking>
+        <rdfs:label>LAP104 16GB RAM</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Storage_LAP104">
+        <rdf:type rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Storage"/>
+        <isWorking rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isWorking>
+        <rdfs:label>LAP104 512GB NVMe SSD</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Device_LAP104">
+        <rdf:type rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Laptop"/>
+        <hasComponent rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#RAM_LAP104"/>
+        <hasComponent rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#Storage_LAP104"/>
+        <hasDamageSeverity rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</hasDamageSeverity>
+        <hasRepairCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2000.0</hasRepairCost>
+        <hasReplacementCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30000.0</hasReplacementCost>
+        <requiresDataErasure rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</requiresDataErasure>
+        <rdfs:label>Device LAP104</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#HazmatCenter_Main">
+        <rdf:type rdf:resource="http://www.semanticweb.org/reuseiq/ontologies/2026/ewaste#HazardousWasteFacility"/>
+        <rdfs:label>EcoHazmat Recovery Facility</rdfs:label>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
