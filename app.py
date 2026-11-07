@@ -41,6 +41,7 @@ from reuseiq.knowledge.predicates import Predicate
 from reuseiq.knowledge.rules import device_to_facts
 from reuseiq.ontology.ontology_manager import OntologyManager
 from reuseiq.services.advisory_service import AdvisoryService
+from reuseiq_theme import inject_global_css, render_home_hero, render_top_nav
 from reuseiq.ui.components import (
     ACTION_COLORS,
     ACTION_ICONS,
@@ -55,7 +56,7 @@ st.set_page_config(
     page_title="ReUseIQ — Intelligent E-Waste Advisor",
     page_icon="♻️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # Initialize singletons in session state
@@ -80,79 +81,28 @@ db = get_database_manager()
 advisor = get_advisory_service()
 ontology_mgr = get_ontology_manager()
 
-# Sidebar Navigation
-st.sidebar.image("https://img.icons8.com/color/96/waste-sorting.png", width=70)
-st.sidebar.title("ReUseIQ Advisor")
-st.sidebar.caption("Symbolic AI Decision-Support System")
+# -----------------------------------------------------------------------------
+# THEME + TOP GLASS NAVIGATION (sidebar removed, highlights live on Home page)
+# -----------------------------------------------------------------------------
+inject_global_css()
 
-nav_page = st.sidebar.radio(
-    "Navigation",
-    [
-        "🏠 Home & Overview",
-        "📝 Register Device",
-        "📦 Device Inventory",
-        "🎯 AI Recommendation",
-        "📊 Decision Comparison",
-        "🔍 Rule Trace & Proof",
-        "📈 Reports & Analytics",
-    ]
-)
+PAGES = [
+    "Home & Overview",
+    "Register Device",
+    "Device Inventory",
+    "AI Recommendation",
+    "Decision Comparison",
+    "Rule Trace & Proof",
+    "Reports & Analytics",
+]
 
-st.sidebar.divider()
-st.sidebar.markdown(
-    """
-    **Architecture Highlights**
-    - 🚫 **No ML / DL / NLP**
-    - 🧠 **Pure Symbolic AI**
-    - ⚡ **Forward Chaining Rules**
-    - 🎯 **Backward Chaining Proofs**
-    - 📐 **Fuzzy Logic (Triangular)**
-    - 🎲 **Bayesian Uncertainty**
-    - ⚖️ **Expected Utility Scoring**
-    - 🌐 **W3C OWL 2 Ontology**
-    """
-)
+nav_page = render_top_nav(PAGES)
 
 # -----------------------------------------------------------------------------
 # PAGE 1: HOME & OVERVIEW
 # -----------------------------------------------------------------------------
-if nav_page == "🏠 Home & Overview":
-    st.title("♻️ ReUseIQ: Intelligent E-Waste Reuse & Recycling Advisor")
-    st.subheader("Symbolic AI Decision Support for Sustainable Electronics Lifecycle Management")
-
-    st.markdown(
-        """
-        Electronic waste is the fastest-growing solid waste stream in the world. Consumers and organizations
-        frequently discard entire devices that have minor, inexpensive defects or contain valuable, reusable
-        internal components.
-
-        **ReUseIQ** is an expert decision-support system built entirely on **Classical Symbolic AI** principles.
-        It systematically evaluates electronic devices using declarative facts, formal logical rules, safety constraints,
-        fuzzy logic, probabilistic uncertainty, and multi-criteria decision theory.
-        """
-    )
-
-    st.divider()
-
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown("### 🧠 Symbolic Knowledge & Rules")
-        st.write(
-            "Encodes domain knowledge using **first-order predicate logic** and **IF-THEN rules**. "
-            "Evaluates device safety, spare parts availability, data privacy requirements, and repair economics."
-        )
-    with col2:
-        st.markdown("### 📐 Fuzzy & Probabilistic Reasoning")
-        st.write(
-            "Uses **triangular fuzzy membership** to model vague concepts like damage severity and repairability. "
-            "Applies **Bayesian probability updating** to model the uncertainty of repair success."
-        )
-    with col3:
-        st.markdown("### ⚖️ Multi-Criteria Utility Theory")
-        st.write(
-            "Compares 5 actions (**Repair, Refurbish, Component Recovery, Direct Reuse, Recycle**) "
-            "balancing economic feasibility, environmental impact, and device life extension."
-        )
+if nav_page == "Home & Overview":
+    render_home_hero()
 
     st.divider()
     st.markdown("### 👥 Project Division of Work")
@@ -197,7 +147,7 @@ if nav_page == "🏠 Home & Overview":
 # -----------------------------------------------------------------------------
 # PAGE 2: REGISTER DEVICE
 # -----------------------------------------------------------------------------
-elif nav_page == "📝 Register Device":
+elif nav_page == "Register Device":
     st.title("📝 Register & Assess Electronic Device")
     st.markdown("Enter device specifications. You can explicitly distinguish known, estimated, and unknown values.")
 
@@ -334,14 +284,14 @@ elif nav_page == "📝 Register Device":
                 result = advisor.evaluate_device(device, save_result=True)
                 st.success(f"Device **{dev_id}** saved and evaluated successfully!")
                 st.session_state["selected_device_id"] = dev_id
-                st.info("Navigate to the **🎯 AI Recommendation** page to inspect the detailed advice.")
+                st.info("Navigate to the **AI Recommendation** page in the top navigation bar to inspect the detailed advice.")
             except Exception as e:
                 st.error(f"Error saving device: {e}")
 
 # -----------------------------------------------------------------------------
 # PAGE 3: DEVICE INVENTORY
 # -----------------------------------------------------------------------------
-elif nav_page == "📦 Device Inventory":
+elif nav_page == "Device Inventory":
     st.title("📦 Electronic Device Inventory")
     st.markdown("View, filter, manage, and inspect registered electronic devices stored in SQLite.")
 
@@ -403,7 +353,7 @@ elif nav_page == "📦 Device Inventory":
         with q_col2:
             if st.button("🔍 View Recommendation", use_container_width=True):
                 st.session_state["selected_device_id"] = selected_dev_id
-                st.info(f"Selected {selected_dev_id}. Please click on '🎯 AI Recommendation' in the sidebar.")
+                st.info(f"Selected {selected_dev_id}. Please click on 'AI Recommendation' in the top navigation bar.")
         with q_col3:
             if st.button("🗑️ Delete Device", type="secondary", use_container_width=True):
                 db.delete_device(selected_dev_id)
@@ -413,7 +363,7 @@ elif nav_page == "📦 Device Inventory":
 # -----------------------------------------------------------------------------
 # PAGE 4: AI RECOMMENDATION
 # -----------------------------------------------------------------------------
-elif nav_page == "🎯 AI Recommendation":
+elif nav_page == "AI Recommendation":
     st.title("🎯 AI Recommendation & Decision Reasoning")
     st.markdown("Detailed symbolic inference, uncertainty analysis, and explanation for an individual device.")
 
@@ -517,7 +467,7 @@ elif nav_page == "🎯 AI Recommendation":
 # -----------------------------------------------------------------------------
 # PAGE 5: DECISION COMPARISON
 # -----------------------------------------------------------------------------
-elif nav_page == "📊 Decision Comparison":
+elif nav_page == "Decision Comparison":
     st.title("📊 Decision Comparison & Multi-Criteria Trade-offs")
     st.markdown("Compare Repair, Refurbishment, Component Recovery, Direct Reuse, and Recycling across multi-criteria objectives.")
 
@@ -573,7 +523,7 @@ elif nav_page == "📊 Decision Comparison":
 # -----------------------------------------------------------------------------
 # PAGE 6: RULE TRACE & PROOF
 # -----------------------------------------------------------------------------
-elif nav_page == "🔍 Rule Trace & Proof":
+elif nav_page == "Rule Trace & Proof":
     st.title("🔍 Inference Engine Rule Trace & Backward Proofs")
     st.markdown("Inspect forward-chaining rule firings and query why specific decisions were made using backward chaining.")
 
@@ -655,7 +605,7 @@ elif nav_page == "🔍 Rule Trace & Proof":
 # -----------------------------------------------------------------------------
 # PAGE 7: REPORTS & ANALYTICS
 # -----------------------------------------------------------------------------
-elif nav_page == "📈 Reports & Analytics":
+elif nav_page == "Reports & Analytics":
     st.title("📈 Reports & E-Waste Analytics")
     st.markdown("Aggregate metrics, economic recovery summaries, and circular economy environmental impact.")
 
